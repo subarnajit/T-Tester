@@ -1,0 +1,58 @@
+  <div class="alert alert-danger" ng-show="page_load_error"> <h4 style="color: #aaaaaa">{{ failuremessage }}</h4></div>
+  <div ng-show="!finished_loading"><h4 style="color: #aaaaaa"> ... please wait a moment </h4></div>
+
+      <div class="col-sm-offset-2 col-sm-10" ng-show="is_index">
+        <button type="submit" class="btn btn-success" ng-click="create()"><span class="glyphicon glyphicon-pencil"></span> Create Test Case </button>
+      </div>
+<br>
+<br>
+<br>
+<br>
+      <div class="col-sm-offset-2 col-sm-10" ng-show="is_index">
+        <button type="submit" class="btn btn-success" ng-click="upload()"><span class="glyphicon glyphicon-paperclip"></span> Upload Test Case </button>
+      </div>
+
+<form class="form-horizontal" name="createForm" ng-submit="next()" ng-show="load_test_form">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="tcname">Test Case Name:</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="tcname" name="tcname"
+      placeholder="Enter Test Case Name" ng-model="user.test_case_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="appname">Application Name:</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="appname" name="appname"
+      placeholder="Enter Application Name" ng-model="user.application_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="endurl">Endpoint url:</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="endurl" name="endurl"
+      placeholder="Enter Endpoint URL" ng-model="user.endpoint_url">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="method">Method:</label>
+    <div class="col-sm-6">
+      <select type="text" id="method" name="method" placeholder="Select Method" ng-model="user.method">
+          <option value="Get">Get</option>
+          <option value="Put">Put</option>
+          <option value="Post">Post</option>
+          <option value="Delete">Delete</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-floppy-saved"></span> Save Test Case </button>
+    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-arrow-right"></span> next </button>
+  </div>
+</form>
+
+
+<form class="form-horizontal" name="registerForm" ng-submit="next()" ng-show="load_upload_form">
+
+</form>
