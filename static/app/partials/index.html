@@ -4,11 +4,8 @@
       <div class="col-sm-offset-2 col-sm-10" ng-show="is_index">
         <button type="submit" class="btn btn-success" ng-click="create()"><span class="glyphicon glyphicon-pencil"></span> Create Test Case </button>
       </div>
-<br>
-<br>
-<br>
-<br>
       <div class="col-sm-offset-2 col-sm-10" ng-show="is_index">
+              <br><br>
         <button type="submit" class="btn btn-success" ng-click="upload()"><span class="glyphicon glyphicon-paperclip"></span> Upload Test Case </button>
       </div>
 
@@ -45,6 +42,66 @@
       </select>
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="payload">Input Message:</label>
+    <div class="col-sm-6">
+      <textarea class="form-control" id="payload" name="payload" placeholder="Enter payload" ng-model="user.payload"></textarea>
+    </div>
+  </div>
+
+<div class="container">
+<h3>Assertions</h3>
+<div class="panel panel-default">
+  <div class="panel-body"><h4>Message Format Assertions</h4></div>
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="status">Status</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control" id="status" name="status"
+    placeholder="Enter Endpoint URL" ng-model="user.status">
+  </div>
+</div>
+<div class="form-group">
+<label class="control-label col-sm-2" for="format">Format</label>
+<div class="col-sm-6">
+  <input type="text" class="form-control" id="format" name="format"
+  placeholder="Enter Endpoint URL" ng-model="user.format">
+</div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2" for="is_array">isArray</label>
+<div class="col-sm-6">
+  <input type="text" class="form-control" id="is_array" name="is_array"
+  placeholder="Enter Endpoint URL" ng-model="user.is_array">
+</div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2" for="is_object">isObject</label>
+<div class="col-sm-6">
+  <input type="text" class="form-control" id="is_object" name="is_object"
+  placeholder="Enter Endpoint URL" ng-model="user.is_object">
+</div>
+</div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body"><h4>Data Format Assertions</h4></div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="payload">Add Expectation:</label>
+      <button type="button" class="btn btn-info" ng-click="addNewChoice()"><span class="glyphicon glyphicon-plus"></span></button>
+  <div class="col-sm-6">
+    <fieldset data-ng-repeat="field in choiceSet.choices track by $index">
+      <input type="text" class="form-control" ng-model=" choiceSet.choices[$index]">
+      <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </fieldset>
+  </div>
+</div>
+</div>
+</div>
 
   <div class="col-sm-offset-2 col-sm-10">
     <button type="submit" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-floppy-saved"></span> Save Test Case </button>

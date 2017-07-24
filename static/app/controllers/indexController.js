@@ -6,6 +6,7 @@
       $scope.load_test_form =  false;
       $scope.load_upload_form =  false;
       $scope.is_index =  true;
+
       // $scope.loggedIn = false;
       // $scope.loggedOut = false;
 
@@ -15,6 +16,18 @@
         $scope.load_test_form =  true;
         $scope.load_upload_form =  false;
         $scope.is_index =  false;
+
+        $scope.choiceSet = {
+          choices: []
+        };
+        $scope.quest = {};
+        $scope.choiceSet.choices = [];
+        $scope.addNewChoice = function() {
+          $scope.choiceSet.choices.push('');
+        };
+        $scope.removeChoice = function(z) {
+          $scope.choiceSet.choices.splice(z, 1);
+        };
       };
 
       $scope.upload = function(){
@@ -24,7 +37,6 @@
         $scope.load_upload_form =  true;
         $scope.is_index =  false;
       };
-
     }
     TTester.controller("indexController", ['$scope',indexController]);
 })();
