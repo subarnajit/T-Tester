@@ -92,16 +92,16 @@
     <label class="control-label col-sm-2" for="payload">Add Expectation:</label>
       <button type="button" class="btn btn-info" ng-click="addNewChoice()"><span class="glyphicon glyphicon-plus"></span></button>
   <div class="col-sm-6">
-    <fieldset data-ng-repeat="field in choiceSet.XPATH track by $index">
-      <input type="text" class="form-control" placeholder="Enter Xpath to validate" ng-model="choiceSet.XPATH[$index]">
-      <select type="text" id="oper" name="oper" placeholder="Select Operation" ng-model="choiceSet.OPERATION[$index]">
+    <fieldset data-ng-repeat="field in user.choiceSet.XPATH track by $index">
+      <input type="text" class="form-control" placeholder="Enter Xpath to validate" ng-model="user.choiceSet.XPATH[$index]">
+      <select type="text" id="oper" name="oper" placeholder="Select Operation" ng-model="user.choiceSet.OPERATION[$index]">
           <option value="Esists">Exists</option>
           <option value="Equals">=</option>
           <option value="LessThan">&lt</option>
           <option value="GreaterThan">&gt</option>
           <option value="NotEquals">&lt&gt</option>
       </select>
-      <input type="text" class="form-control" placeholder="Enter value to validate" ng-model="choiceSet.VALUE[$index]">
+      <input type="text" class="form-control" placeholder="Enter value to validate" ng-model="user.choiceSet.VALUE[$index]">
       <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
         <span class="glyphicon glyphicon-minus"></span>
       </button>

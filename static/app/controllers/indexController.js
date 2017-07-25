@@ -24,28 +24,33 @@
         $scope.load_test_form =  true;
         $scope.load_upload_form =  false;
         $scope.is_index =  false;
-
-        $scope.choiceSet = {
+        $scope.user = {};
+        $scope.user.choiceSet = {
           XPATH: [],
           OPERATION: [],
           VALUE:[]
         };
-        $scope.quest = {};
-        $scope.choiceSet.XPATH = [];
-        $scope.choiceSet.OPERATION = [];
-        $scope.choiceSet.VALUE = [];
+        $scope.user.quest = {};
+        $scope.user.choiceSet.XPATH = [];
+        $scope.user.choiceSet.OPERATION = [];
+        $scope.user.choiceSet.VALUE = [];
         $scope.addNewChoice = function() {
-          $scope.choiceSet.XPATH.push('');
-          $scope.choiceSet.OPERATION.push('');
-          $scope.choiceSet.VALUE.push('');
+          $scope.user.choiceSet.XPATH.push('');
+          $scope.user.choiceSet.OPERATION.push('');
+          $scope.user.choiceSet.VALUE.push('');
         };
         $scope.removeChoice = function(z) {
           var a,b,c = z
-          $scope.choiceSet.XPATH.splice(a, 1);
-          $scope.choiceSet.OPERATION.splice(b, 1);
-          $scope.choiceSet.VALUE.splice(c, 1);
+          $scope.user.choiceSet.XPATH.splice(a, 1);
+          $scope.user.choiceSet.OPERATION.splice(b, 1);
+          $scope.user.choiceSet.VALUE.splice(c, 1);
         };
       };
+
+      $scope.next = function() {
+        console.log($scope.user);
+        
+    };
 
       $scope.uploadTestConfig =  function() {
         var file = $scope.testConfigFile;
