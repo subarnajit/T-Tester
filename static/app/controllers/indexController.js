@@ -18,15 +18,24 @@
         $scope.is_index =  false;
 
         $scope.choiceSet = {
-          choices: []
+          XPATH: [],
+          OPERATION: [],
+          VALUE:[]
         };
         $scope.quest = {};
-        $scope.choiceSet.choices = [];
+        $scope.choiceSet.XPATH = [];
+        $scope.choiceSet.OPERATION = [];
+        $scope.choiceSet.VALUE = [];
         $scope.addNewChoice = function() {
-          $scope.choiceSet.choices.push('');
+          $scope.choiceSet.XPATH.push('');
+          $scope.choiceSet.OPERATION.push('');
+          $scope.choiceSet.VALUE.push('');
         };
         $scope.removeChoice = function(z) {
-          $scope.choiceSet.choices.splice(z, 1);
+          var a,b,c = z
+          $scope.choiceSet.XPATH.splice(a, 1);
+          $scope.choiceSet.OPERATION.splice(b, 1);
+          $scope.choiceSet.VALUE.splice(c, 1);
         };
       };
 
