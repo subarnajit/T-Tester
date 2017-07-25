@@ -8,6 +8,7 @@
     "express": "4.x",
     "morgan":"1.x",
     "chai":"4.x",
-    "chai-http":"3.x"
+    "chai-http":"3.x",
+    "multer" : "1.x"
   }
 }
