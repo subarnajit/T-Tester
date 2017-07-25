@@ -1,6 +1,18 @@
 var express = require('express'),
     morgan  = require('morgan'),
-    bodyParser  = require('body-parser')
+    bodyParser  = require('body-parser'),
+    multer  = require('multer');
+
+var storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, './upload');
+      },
+      filename: function (req, file, cb) {
+        cb(null, file.originalname + '-' + Date.now());
+      }
+    });
+var upload = multer({ storage: storage}).single('testConfigFile');
+
 
 var app = express();
 app.use(require("morgan")("dev"));
@@ -8,24 +20,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/../static"));
 
+app.post('/uploadTestConfig', function (req, res) {
 
-/*
-bcrypt.hash(, 10,(err,hash)=>{
-  if(err){
-    return done (null, false,{message: "Error in hasing password"});
-  }
-  else {
-
-    if(results[0].password == hash)
-    {
-      return done(null, results[0]);
+  upload(req,res,function(err){
+    if(err){
+      console.log(err);
+      return res.end("Error in uploading file");
     }
-    else
-    {
-
-    }
-  }
+    //var testConfigData = JSON.parse(req.file);
+    console.log(req.file);
+    res.end("Uploaded File");
+  });
 });
-*/
-//serialize
-  app.listen(8080);
+
+app.listen(8080);
