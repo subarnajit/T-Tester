@@ -16,8 +16,8 @@
       $scope.load_test_form =  false;
       $scope.load_upload_form =  false;
       $scope.is_index =  true;
-    }
-    
+    };
+
       $scope.create = function(){
         $scope.page_load_error = false;
         $scope.finished_loading =  true;
@@ -47,6 +47,9 @@
         };
       };
 
+      $scope.uploadTestConfig =  function() {
+
+       };
       $scope.upload = function(){
         $scope.page_load_error = false;
         $scope.finished_loading =  true;
