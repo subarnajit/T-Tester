@@ -27,7 +27,7 @@ app.post('/uploadTestConfig', function (req, res) {
       console.log(err);
       return res.end("Error in uploading file");
     }
-    //var testConfigData = JSON.parse(req.file);
+    //var testConfigData = JSON.parse(req.file.buffer);
     console.log(req.file);
     res.end("Uploaded File");
   });
