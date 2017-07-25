@@ -58,14 +58,14 @@
   <label class="control-label col-sm-2" for="status">Status</label>
   <div class="col-sm-6">
     <input type="text" class="form-control" id="status" name="status"
-    placeholder="Enter Endpoint URL" ng-model="user.status">
+    placeholder="Enter expected response status code e.g. 200" ng-model="user.status">
   </div>
 </div>
 <div class="form-group">
 <label class="control-label col-sm-2" for="format">Format</label>
 <div class="col-sm-6">
   <input type="text" class="form-control" id="format" name="format"
-  placeholder="Enter Endpoint URL" ng-model="user.format">
+  placeholder="Enter expected response format e.g. JSON" ng-model="user.format">
 </div>
 </div>
 
@@ -73,7 +73,7 @@
 <label class="control-label col-sm-2" for="is_array">isArray</label>
 <div class="col-sm-6">
   <input type="text" class="form-control" id="is_array" name="is_array"
-  placeholder="Enter Endpoint URL" ng-model="user.is_array">
+  placeholder="True or False " ng-model="user.is_array">
 </div>
 </div>
 
@@ -81,7 +81,7 @@
 <label class="control-label col-sm-2" for="is_object">isObject</label>
 <div class="col-sm-6">
   <input type="text" class="form-control" id="is_object" name="is_object"
-  placeholder="Enter Endpoint URL" ng-model="user.is_object">
+  placeholder="True or False" ng-model="user.is_object">
 </div>
 </div>
 </div>
