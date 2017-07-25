@@ -48,8 +48,39 @@
       };
 
       $scope.next = function() {
-        console.log($scope.user);
-        
+      var indexAssert = $scope.user.choiceSet.XPATH;
+      jsonData = [];
+      var i = 0
+        indexAssert.forEach(function(eachXPath) {
+          var DataAssert = {
+            "DataTagName": eachXPath,
+            "DataTagOperation": $scope.user.choiceSet.OPERATION[i],
+            "DataTagValue": $scope.user.choiceSet.VALUE[i]
+          };
+          i= i+1;
+          jsonData.push(DataAssert);
+        });
+        var TestCase = {
+          "IIBTestConfig":{
+            "App": {
+              "name":$scope.user.application_name,
+              "endpoint":$scope.user.endpoint_url,
+            "testCases": {
+                "name": $scope.user.test_case_name,
+                "methodToCall": $scope.user.method,
+                "payload": $scope.user.payload,
+                "MessageFomatAsserts":{
+                  "status": $scope.user.status,
+                  "messageFormat": $scope.user.format,
+                  "arrayCheck": $scope.user.is_array,
+                  "objectCheck": $scope.user.is_object,
+                },
+                "DataFormatAssert":   jsonData
+            }
+          }
+        }
+      };
+      console.log(JSON.stringify(TestCase));
     };
 
       $scope.uploadTestConfig =  function() {
