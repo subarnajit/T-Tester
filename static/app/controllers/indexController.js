@@ -1,6 +1,6 @@
 (function () {
 
-    function indexController ($scope) {
+    function indexController ($scope,indexService) {
       $scope.page_load_error = null;
       $scope.finished_loading =  true;
       $scope.load_test_form =  false;
@@ -48,7 +48,21 @@
       };
 
       $scope.uploadTestConfig =  function() {
-
+        var file = $scope.testConfigFile;
+        console.log(file);
+        indexService.uploadFile(file,(err,data)=>{
+         if(err){
+             $scope.page_load_error = true;
+             $scope.failuremessage = "Error while loading file"
+         }
+         else {
+           $scope.page_load_error = null;
+           $scope.finished_loading =  true;
+           $scope.load_test_form =  false;
+           $scope.load_upload_form =  false;
+           $scope.is_index =  true;
+         }
+       });
        };
       $scope.upload = function(){
         $scope.page_load_error = false;
@@ -58,5 +72,5 @@
         $scope.is_index =  false;
       };
     }
-    TTester.controller("indexController", ['$scope',indexController]);
+    TTester.controller("indexController", ['$scope','indexService',indexController]);
 })();

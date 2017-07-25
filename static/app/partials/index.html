@@ -120,16 +120,16 @@
 
 
 <form class="form-horizontal" method="post" name="uploadForm" enctype="multipart/form-data"
-      ng-show="load_upload_form" ng-submit="uploadTestConfig()">
+      ng-show="load_upload_form">
 <div class="form-group">
 <label class="control-label col-sm-2" for="tcname">Upload JSON file</label>
 <div class="col-sm-6">
-  <input type="file" class="form-control" id="testConfigFile" name="testConfigFile" ng-model="testConfigFile"
+  <input type="file" class="form-control" id="testConfigFile" name="testConfigFile" file-model="testConfigFile"
   placeholder="Enter Test Case Name" ng-model="testConfigFile" accept="*.json">
 </div>
 </div>
 <div class="col-sm-offset-2 col-sm-10">
-<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-file"/> Upload Test Config </button>
+<button type="submit" class="btn btn-success" ng-click="uploadTestConfig()"><span class="glyphicon glyphicon-file"/> Upload Test Config </button>
 <button type="button" class="btn btn-success" ng-click="reload()"><span class="glyphicon glyphicon-arrow-left"></span> Back </button>
 </div>
 </form>
