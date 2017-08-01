@@ -1,13 +1,13 @@
 (function(){
   function indexService($http){
 
-  this._server_host = "http://localhost:8080";
+  this._server_host = "";
 
   this.uploadFile = function(file,callback){
-    console.log("inside service: calling API");
     var fd = new FormData();
-    console.log(file);
     fd.append('testConfigFile', file);
+    console.log("Call service to upload file");
+    console.log(file);
     $http.post(this._server_host+"/uploadTestConfig",fd,
           { transformRequest: angular.identity,
             headers: {'Content-Type': undefined}

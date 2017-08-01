@@ -1,6 +1,6 @@
 (function () {
 
-    function indexController ($scope,indexService) {
+    function indexController ($scope,$rootScope,$window,indexService) {
       $scope.page_load_error = null;
       $scope.finished_loading =  true;
       $scope.load_test_form =  false;
@@ -92,11 +92,11 @@
              $scope.failuremessage = "Error while loading file"
          }
          else {
-           $scope.page_load_error = null;
-           $scope.finished_loading =  true;
-           $scope.load_test_form =  false;
-           $scope.load_upload_form =  false;
-           $scope.is_index =  true;
+           console.log(data);
+          $rootScope.testConfigData = data;
+          var host = $window.location.host;
+          var landingUrl = "http://" + host + "/#/runTestCase";
+          $window.location.href = landingUrl;
          }
        });
        };
@@ -108,5 +108,5 @@
         $scope.is_index =  false;
       };
     }
-    TTester.controller("indexController", ['$scope','indexService',indexController]);
+    TTester.controller("indexController", ['$scope','$rootScope','$window','indexService',indexController]);
 })();

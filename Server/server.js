@@ -1,14 +1,16 @@
 var express = require('express'),
     morgan  = require('morgan'),
     bodyParser  = require('body-parser'),
-    multer  = require('multer');
+    multer  = require('multer'),
+    fs = require('fs');
 
 var storage = multer.diskStorage({
       destination: function (req, file, cb) {
+        console.log(file);;
         cb(null, './upload');
       },
       filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now());
+        cb(null, + Date.now() +'-'+ file.originalname);
       }
     });
 var upload = multer({ storage: storage}).single('testConfigFile');
@@ -27,9 +29,10 @@ app.post('/uploadTestConfig', function (req, res) {
       console.log(err);
       return res.end("Error in uploading file");
     }
-    //var testConfigData = JSON.parse(req.file.buffer);
     console.log(req.file);
-    res.end("Uploaded File");
+    //console.log(req.file.path);
+    var rstream = fs.createReadStream(req.file.path);
+    rstream.pipe(res);
   });
 });
 

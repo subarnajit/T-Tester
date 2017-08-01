@@ -4,6 +4,8 @@ TTester.config(function ($routeProvider) {
   $routeProvider
       .when("/index",{controller:"indexController",
                            templateUrl:"app/partials/index.html"})
+      .when("/runTestCase",{controller:"runTestCaseController",
+                           templateUrl:"app/partials/runTestCase.html"})
       .when("/404",{controller:"404Controller",
                            templateUrl:"app/partials/404.html"})
       .when("/",{redirectTo:"/index"})
