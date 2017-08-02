@@ -4,7 +4,7 @@ var express = require('express'),
     multer  = require('multer'),
     fs = require('fs');
 
-var storage = multer.diskStorage({
+/* var storage = multer.diskStorage({
       destination: function (req, file, cb) {
         console.log(file);;
         cb(null, './upload');
@@ -12,7 +12,9 @@ var storage = multer.diskStorage({
       filename: function (req, file, cb) {
         cb(null, + Date.now() +'-'+ file.originalname);
       }
-    });
+    }); */
+
+  var storage = multer.memoryStorage();  
 var upload = multer({ storage: storage}).single('testConfigFile');
 
 
@@ -22,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/../static"));
 
+
 app.post('/uploadTestConfig', function (req, res) {
 
   upload(req,res,function(err){
@@ -29,10 +32,13 @@ app.post('/uploadTestConfig', function (req, res) {
       console.log(err);
       return res.end("Error in uploading file");
     }
-    console.log(req.file);
-    //console.log(req.file.path);
-    var rstream = fs.createReadStream(req.file.path);
-    rstream.pipe(res);
+    console.log(req.file.buffer);
+    // //console.log(req.file.path);
+    // var rstream = fs.createReadStream(req.file.path);
+    // rstream.pipe(res);
+
+    res.end(req.file.buffer);
+
   });
 });
 
