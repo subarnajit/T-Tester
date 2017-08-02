@@ -36,7 +36,6 @@ app.post('/uploadTestConfig', function (req, res) {
     // //console.log(req.file.path);
     // var rstream = fs.createReadStream(req.file.path);
     // rstream.pipe(res);
-
     res.end(req.file.buffer);
 
   });
