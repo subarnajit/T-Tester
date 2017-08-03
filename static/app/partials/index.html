@@ -46,7 +46,9 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="payload">Input Message:</label>
     <div class="col-sm-6">
-      <textarea class="form-control" id="payload" name="payload" placeholder="Enter payload" ng-model="user.payload"></textarea>
+      <!--<textarea class="form-control" id="payload" name="payload" placeholder="Enter payload" ng-model="user.payload"></textarea>-->
+      <!--<input type="file" valid-file upload="uploadFile(file)" ng-model="file">-->
+      <input type="file"  on-read-file="uploadFile($fileContent)" class="form-control" id="file" name="file" file-model="file" placeholder="upload file" ng-model="file" accept="*.json">
     </div>
   </div>
 

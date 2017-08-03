@@ -10,6 +10,7 @@ TTester.config(function ($routeProvider) {
                            templateUrl:"app/partials/404.html"})
       .when("/",{redirectTo:"/index"})
 });
+
 TTester.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
@@ -25,3 +26,44 @@ TTester.directive('fileModel', ['$parse', function ($parse) {
         }
     };
 }]);
+/*
+TTester.directive('validFile',[function() {
+  return {
+    require : 'ngModel',
+    scope : {format: '@', upload : '&upload'},
+    link : function(scope, el, attrs, ngModel) {
+      // change event is fired when file is selected
+      el.bind('change', function(event) {
+        console.log(event.target.files[0]);
+        scope.upload({file:event.target.files[0]});
+        scope.$apply(function() {
+          ngModel.$setViewValue(el.val());
+          ngModel.$render();
+        });
+      })
+    }
+  }
+}]);
+*/
+TTester.directive('onReadFile', function ($parse) {
+	return {
+		restrict: 'A',
+		scope: false,
+    //};
+		link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+
+			element.on('change', function(onChangeEvent) {
+				var reader = new FileReader();
+
+				reader.onload = function(onLoadEvent) {
+					scope.$apply(function() {
+						fn(scope, {$fileContent:onLoadEvent.target.result});
+					});
+				};
+
+				reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+			});
+		}
+	};
+});

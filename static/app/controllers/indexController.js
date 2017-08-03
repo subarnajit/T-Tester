@@ -47,35 +47,42 @@
         };
       };
 
+      $scope.uploadFile = function($fileContent) {
+    $scope.user.content = $fileContent;
+    console.log("Testing upload");
+    console.log($scope.user.content);
+  };
+
       $scope.next = function() {
       var indexAssert = $scope.user.choiceSet.XPATH;
+      var payloadObj  = JSON.parse($scope.user.content);
       jsonData = [];
       var i = 0
         indexAssert.forEach(function(eachXPath) {
           var DataAssert = {
-            "DataTagName": eachXPath,
-            "DataTagOperation": $scope.user.choiceSet.OPERATION[i],
-            "DataTagValue": $scope.user.choiceSet.VALUE[i]
+            DataTagName: eachXPath,
+            DataTagOperation: $scope.user.choiceSet.OPERATION[i],
+            DataTagValue: $scope.user.choiceSet.VALUE[i]
           };
           i= i+1;
           jsonData.push(DataAssert);
         });
         var TestCase = {
-          "IIBTestConfig":{
-            "App": {
-              "name":$scope.user.application_name,
-              "endpoint":$scope.user.endpoint_url,
-            "testCases": {
-                "name": $scope.user.test_case_name,
-                "methodToCall": $scope.user.method,
-                "payload": $scope.user.payload,
-                "MessageFomatAsserts":{
-                  "status": $scope.user.status,
-                  "messageFormat": $scope.user.format,
-                  "arrayCheck": $scope.user.is_array,
-                  "objectCheck": $scope.user.is_object,
+          IIBTestConfig:{
+            App: {
+              name:$scope.user.application_name,
+              endpoint:$scope.user.endpoint_url,
+            testCases: {
+                name: $scope.user.test_case_name,
+                methodToCall: $scope.user.method,
+                payload: payloadObj,
+                MessageFomatAsserts:{
+                  status: $scope.user.status,
+                  messageFormat: $scope.user.format,
+                  arrayCheck: $scope.user.is_array,
+                  objectCheck: $scope.user.is_object,
                 },
-                "DataFormatAssert":   jsonData
+                DataFormatAssert:   jsonData
             }
           }
         }
