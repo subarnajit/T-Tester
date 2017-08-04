@@ -48,14 +48,14 @@
       };
 
       $scope.uploadFile = function($fileContent) {
-    $scope.user.content = $fileContent;
-    console.log("Testing upload");
-    console.log($scope.user.content);
+        $scope.content = $fileContent;
+    // console.log($scope.content);
+
   };
 
       $scope.next = function() {
       var indexAssert = $scope.user.choiceSet.XPATH;
-      var payloadObj  = JSON.parse($scope.user.content);
+      var payloadObj  = JSON.parse($scope.content);
       jsonData = [];
       var i = 0
         indexAssert.forEach(function(eachXPath) {
@@ -87,9 +87,13 @@
           }
         }
       };
-      console.log(JSON.stringify(TestCase));
+      $rootScope.testConfigData = TestCase;
+      //console.log(JSON.stringify(TestCase));
+      var host = $window.location.host;
+      var landingUrl = "http://" + host + "/#/runTestCase";
+      $window.location.href = landingUrl;
     };
-
+/*
       $scope.uploadTestConfig =  function() {
         var file = $scope.testConfigFile;
         console.log(file);
@@ -106,7 +110,8 @@
           $window.location.href = landingUrl;
          }
        });
-       };
+     };*/
+
       $scope.upload = function(){
         $scope.page_load_error = false;
         $scope.finished_loading =  true;
@@ -114,6 +119,15 @@
         $scope.load_upload_form =  true;
         $scope.is_index =  false;
       };
+
+
+      $scope.uploadTestConfiguration =  function() {
+        $rootScope.testConfigData  = $scope.content;
+        var host = $window.location.host;
+        var landingUrl = "http://" + host + "/#/runTestCase";
+        $window.location.href = landingUrl;
+      };
     }
+
     TTester.controller("indexController", ['$scope','$rootScope','$window','indexService',indexController]);
 })();
