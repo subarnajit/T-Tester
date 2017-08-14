@@ -1,0 +1,61 @@
+{
+	"IIBTestConfig": {
+		"App1": {
+			"name": "Employee",
+			"applicationType": "RestAPI",
+			"hostURL": "http://9.202.23.165:7080",
+			"contextURL": "/empmanagement/v1/manageEmployees",
+			"testCases": [{
+					"name": "EmployeeAppTest",
+					"description": "This would test the get employee call",
+					"methodToCall": "get",
+					"MessageFomatAsserts": {
+						"status": 200,
+						"messageFormat": "json",
+						"arrayCheck": "true"
+					},
+					"DataFormatAssert": [{
+						"DataTagName": "Employees[0].EmpType",
+						"DataTagValue": "REGULAR"
+					}, {
+						"DataTagName": "Employees[0].City",
+						"DataTagValue": "WISCONSIN"
+					}]
+				},
+				{
+					"name": "EmployeeAppTest",
+					"description": "This would test the put employee call",
+					"methodToCall": "put",
+					"dataToSend": {
+						"Employees": [{
+							"EmpId": "1",
+							"EmpType": "REGULAR",
+							"Gender": "MALE",
+							"BirthDate": "12/01/1980",
+							"MaritalStatus": "M",
+							"Name": "Han",
+							"Title": "Mr.",
+							"City": "WISCONSIN",
+							"State": "ILLINOIS",
+							"PostalCode": "E016217",
+							"Country": "US",
+							"Work": "+1414000000",
+							"Mobile": "+1414000001",
+							"Email": "han@gmail.com"
+						}]
+					},
+					"MessageFomatAsserts": {
+						"status": 200,
+						"messageFormat": "json",
+						"arrayCheck": "false",
+						"objectCheck": "true"
+					},
+					"DataFormatAssert": [{
+						"DataTagName": "Status.Message",
+						"DataTagValue": "Updated Successfully"
+					}]
+				}
+			]
+		}
+	}
+}
