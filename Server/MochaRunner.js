@@ -1,9 +1,10 @@
 var Mocha = require('mocha');
-var testCaseDef = require("./DynamicTestCases.js");
 
 var mocha = new Mocha({reporter:"json"});
 
 mocha.addFile("./DynamicTestCases.js");
+
+
 mocha.run()
     .on("start", function(){
         console.log("execution started");
