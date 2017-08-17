@@ -1,9 +1,9 @@
 {
 	"IIBTestConfig": {
-		"App1": {
+		"Apps":[{
 			"name": "Employee",
 			"applicationType": "RestAPI",
-			"hostURL": "http://9.202.23.165:7080",
+			"hostURL": "http://9.195.221.50:7080",
 			"contextURL": "/empmanagement/v1/manageEmployees",
 			"testCases": [{
 					"name": "EmployeeAppTest",
@@ -56,6 +56,6 @@
 					}]
 				}
 			]
-		}
+		}]
 	}
 }

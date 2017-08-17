@@ -4,16 +4,9 @@ var child;
 
 // executes `pwd`
 
-child = exec("mocha ./DynamicTestCases.js --reporter json", function (error, stdout, stderr) {
-
-  console.log('stdout: ' + stdout);
-
-  console.log('stderr: ' + stderr);
-
-  if (error !== null) {
-
-    console.log('exec error: ' + error);
-
-  }
-
-});
+ var command = "mocha DynamicTestCases.js --reporter json TestCases.json";
+  var child = exec(command, function (error, stdout, stderr) { 
+    console.log(stderr);   
+    var output = JSON.parse(stdout);
+    console.log(output);
+  });

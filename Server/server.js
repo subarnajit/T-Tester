@@ -1,21 +1,8 @@
 var express = require('express'),
     morgan  = require('morgan'),
     bodyParser  = require('body-parser'),
-    multer  = require('multer'),
-    fs = require('fs');
-
-/* var storage = multer.diskStorage({
-      destination: function (req, file, cb) {
-        console.log(file);;
-        cb(null, './upload');
-      },
-      filename: function (req, file, cb) {
-        cb(null, + Date.now() +'-'+ file.originalname);
-      }
-    }); */
-
-  var storage = multer.memoryStorage();  
-var upload = multer({ storage: storage}).single('testConfigFile');
+    fs = require('fs'),
+    exec = require('child_process').exec;
 
 
 var app = express();
@@ -23,7 +10,6 @@ app.use(require("morgan")("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/../static"));
-
 
 app.post('/uploadTestConfig', function (req, res) {
 
@@ -38,6 +24,18 @@ app.post('/uploadTestConfig', function (req, res) {
     // rstream.pipe(res);
     res.end(req.file.buffer);
 
+  });
+});
+
+app.post('/executeTestConfig', function(req,res){
+  var output;
+  fs.writeFileSync("./upload/TestCaseConfig.json",JSON.stringify(req.body), 'utf8');
+  var command = "mocha DynamicTestCases.js --reporter json upload/TestCaseConfig.json";
+  var child = exec(command, function (error, stdout, stderr) {
+    output = JSON.parse(stdout);
+    res.writeHead(200, {"Content-Type": "application/json"});
+ // var responseData = { error: null, data: output };
+  res.end(JSON.stringify(output) + "\n");
   });
 });
 

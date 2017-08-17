@@ -3,44 +3,8 @@ body {
     padding: 50px;
 }
 
-.recipe {
-    width: 300px;
-    min-height: 150px;
-    float: left;
-    margin: 10px;
-}
-.recipe-editor {
-    width: 600px;
-    float: left;
-    margin: 10px;
-}
-
-.recipe-editor textarea {
-    border-color: dddddd;
-}
-
-.smaller {
-    font-size: 15pt;
-}
-
-.lighter {
-    color: #aaaaaa;
-}
-
-.green {
-    color: #008000;
-}
-
-.red {
-    color: #ff0000;
-}
-
-p.preparation {white-space: pre}
-
-.right-button {
-    float: right;
-    padding: 10px;
-    font-size: 125%;
+.panel-body{
+    word-break: break-all
 }
 
 .bs-callout{padding:10px 20px;margin:10px 0;border:1px solid #eee;border-left-width:5px;border-radius:3px}

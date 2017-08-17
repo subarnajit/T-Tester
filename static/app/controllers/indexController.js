@@ -50,8 +50,7 @@
       $scope.uploadFile = function($fileContent) {
         $scope.content = $fileContent;
     // console.log($scope.content);
-
-  };
+      };
 
       $scope.next = function() {
       var indexAssert = $scope.user.choiceSet.XPATH;
@@ -122,7 +121,7 @@
 
 
       $scope.uploadTestConfiguration =  function() {
-        $rootScope.testConfigData  = $scope.content;
+        $rootScope.testConfigData  = JSON.parse($scope.content);        
         var host = $window.location.host;
         var landingUrl = "http://" + host + "/#/runTestCase";
         $window.location.href = landingUrl;

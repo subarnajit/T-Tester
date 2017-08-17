@@ -1,3 +1,57 @@
 <div class="alert alert-danger" ng-show="page_load_error"> <h4 style="color: #aaaaaa">{{ failuremessage }}</h4></div>
 <div ng-show="!finished_loading"><h4 style="color: #aaaaaa"> ... please wait a moment </h4></div>
-<div>{{testConfigData}}</div>
+<div class="panel-group" ng-show="showTestCases">
+    <div ng-repeat="app in testConfigData.IIBTestConfig.Apps" class="panel panel-primary">
+        <div class="panel-heading">
+            {{ app.name }} -- {{ app.applicationType }}
+        </div>
+        <div class="panel-body">
+            <button type="button" class=" btn btn-primary"><span class="glyphicon glyphicon-download-alt"/> Download</button>
+            <button type="button" class=" btn btn-success" ng-click="executeTest()"><span class="glyphicon glyphicon-play"/> Execute</button>
+            <button type="button" class=" btn btn-info" ng-click="goHome()"><span class="glyphicon glyphicon-home"/> Home</button>
+        </div>       
+        <div class="panel-body">
+            <div class="col-md-4">Application Host</div>
+            <div class="col-md-8">{{ app.hostURL }}</div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-4">Application context Url</div>
+            <div class="col-md-8">{{app.contextURL }}</div>
+        </div>        
+        <div ng-repeat="testCase in app.testCases" class="panel panel-info">
+            <div class="panel-heading">
+                    {{ testCase.name }} -- {{ testCase.description }} -- {{testCase.methodToCall}}
+            </div>
+            <div class="panel-body" ng-if="testCase.dataToSend">
+                    <div class="col-md-4">Data to Send</div>
+                    <div class="col-md-8 small">{{ testCase.dataToSend}}</div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">MessageFomatAsserts</div>
+                <div class="panel-body">
+                     <div class="col-md-4">Status Code</div>
+                     <div class="col-md-8">{{ testCase.MessageFomatAsserts.status }}</div>
+                </div>
+                <div class="panel-body">
+                     <div class="col-md-4">Message Format</div>
+                     <div class="col-md-8">{{ testCase.MessageFomatAsserts.messageFormat }}</div>
+                </div>
+                <div class="panel-body">
+                     <div class="col-md-4">Array check</div>
+                     <div class="col-md-8">{{ testCase.MessageFomatAsserts.arrayCheck }}</div>
+                </div>
+                
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">DataFormatAsserts</div>
+                <div ng-repeat="dataAssert in testCase.DataFormatAssert">
+                    <div class="panel-body">
+                        <div class="col-md-4">{{dataAssert.DataTagName}}</div>
+                        <div class="col-md-8">{{ dataAssert.DataTagValue }}</div>
+                    </div>
+                </div>    
+            </div>         
+        </div>                                     
+    </div>
+</div>
+<div ng-show="showResults">{{testResults}}</div>
