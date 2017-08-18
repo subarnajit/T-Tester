@@ -12,18 +12,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/../static"));
 
 app.post('/uploadTestConfig', function (req, res) {
-
   upload(req,res,function(err){
     if(err){
       console.log(err);
       return res.end("Error in uploading file");
     }
-    console.log(req.file.buffer);
-    // //console.log(req.file.path);
-    // var rstream = fs.createReadStream(req.file.path);
-    // rstream.pipe(res);
     res.end(req.file.buffer);
-
   });
 });
 
@@ -34,8 +28,7 @@ app.post('/executeTestConfig', function(req,res){
   var child = exec(command, function (error, stdout, stderr) {
     output = JSON.parse(stdout);
     res.writeHead(200, {"Content-Type": "application/json"});
- // var responseData = { error: null, data: output };
-  res.end(JSON.stringify(output) + "\n");
+    res.end(JSON.stringify(output) + "\n");
   });
 });
 
